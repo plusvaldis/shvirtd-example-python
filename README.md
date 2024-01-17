@@ -81,7 +81,11 @@ compose.yaml
 
 ## Задача 6
 Скачайте docker образ ```hashicorp/terraform:latest``` и скопируйте бинарный файл ```/bin/terraform``` на свою локальную машину, используя dive и docker save.
-Предоставьте скриншоты  действий .
+Предоставьте скриншоты  действий .  
+
+![Скриншот-7](https://github.com/plusvaldis/shvirtd-example-python/blob/main/images/7.png)  
+
+![Скриншот-8](https://github.com/plusvaldis/shvirtd-example-python/blob/main/images/8.png)
 
 ## Задача 6.1 (*)
 Добейтесь аналогичного результата, используя познания  CMD, ENTRYPOINT и docker cp.  
