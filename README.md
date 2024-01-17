@@ -71,6 +71,14 @@ compose.yaml
 6. В качестве ответа повторите  sql-запрос и приложите скриншот с данного сервера, bash-скрипт и ссылку на fork-репозиторий.  
 ![Скриншот-6](https://github.com/plusvaldis/shvirtd-example-python/blob/main/images/6.png)  
 [bash-скрипт](https://github.com/plusvaldis/shvirtd-example-python/blob/main/install_python_v2.sh)  
+```bash
+#!/bin/bash
+
+apt install -y git && apt install docker* -y
+git clone https://github.com/plusvaldis/shvirtd-example-python.git /opt/app_python
+docker compose -f /opt/app_python/compose.yaml up -d
+exit 0
+```
 [fork-репозиторий](https://github.com/plusvaldis/shvirtd-example-python/tree/main)
 
 ## Задача 5 (*)
