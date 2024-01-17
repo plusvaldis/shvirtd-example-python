@@ -17,7 +17,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY main.py .
-CMD ["python", "main.py"]```  
+CMD ["python", "main.py"]```
 
 Запустили сборку приложения ```docker build -t test_python .```  
 
@@ -55,8 +55,12 @@ CMD ["python", "main.py"]```
 2. Подключитесь к Вм по ssh и установите docker.
 3. Напишите bash-скрипт, который скачает ваш fork-репозиторий в каталог /opt и запустит проект целиком.
 4. Зайдите на сайт проверки http подключений, например(или аналогичный): ```https://check-host.net/check-http``` и запустите проверку вашего сервиса ```http://<внешний_IP-адрес_вашей_ВМ>:5000```.
-5. (Необязательная часть) Дополнительно настройте remote ssh context к вашему серверу. Отобразите список контекстов и результат удаленного выполнения ```docker ps -a```
-6. В качестве ответа повторите  sql-запрос и приложите скриншот с данного сервера, bash-скрипт и ссылку на fork-репозиторий.
+5. (Необязательная часть) Дополнительно настройте remote ssh context к вашему серверу. Отобразите список контекстов и результат удаленного выполнения ```docker ps -a```  
+![Скриншот-5](https://github.com/plusvaldis/virtd-homeworks/blob/main/05-virt-03-docker-intro/images/5.png) 
+6. В качестве ответа повторите  sql-запрос и приложите скриншот с данного сервера, bash-скрипт и ссылку на fork-репозиторий.  
+![Скриншот-6](https://github.com/plusvaldis/virtd-homeworks/blob/main/05-virt-03-docker-intro/images/6.png)  
+[bash-скрипт](https://github.com/plusvaldis/shvirtd-example-python/blob/main/install_python_v2.sh)  
+[fork-репозиторий](https://github.com/plusvaldis/shvirtd-example-python/tree/main)
 
 ## Задача 5 (*)
 1. Напишите и задеплойте на вашу облачную ВМ bash скрипт, который произведет резервное копирование БД mysql в директорию "/opt/backup" с помощью запуска в сети "backend" контейнера из образа ```schnitzler/mysqldump``` при помощи ```docker run ...``` команды. Подсказка: "документация образа."
