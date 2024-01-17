@@ -103,7 +103,7 @@ exit 0
 ```  
 crontab-task:
 ```bash
-1 * * * * /home/cherepanov/backup.sh
+*/1 * * * * /home/cherepanov/backup.sh
 ```  
 ![Скриншот-9](https://github.com/plusvaldis/shvirtd-example-python/blob/main/images/9.png)
 
