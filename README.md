@@ -77,7 +77,29 @@ compose.yaml
 1. Напишите и задеплойте на вашу облачную ВМ bash скрипт, который произведет резервное копирование БД mysql в директорию "/opt/backup" с помощью запуска в сети "backend" контейнера из образа ```schnitzler/mysqldump``` при помощи ```docker run ...``` команды. Подсказка: "документация образа."
 2. Протестируйте ручной запуск
 3. Настройте выполнение скрипта раз в 1 минуту через cron, crontab или systemctl timer.
-4. Предоставьте скрипт, cron-task и скриншот с несколькими резервными копиями в "/opt/backup"
+4. Предоставьте скрипт, cron-task и скриншот с несколькими резервными копиями в "/opt/backup"  
+```bash
+#!/bin/bash
+
+export $(xargs < /opt/app_python/.env)
+
+now=$(date +"%s_%Y-%m-%d")
+docker run \
+    --rm --entrypoint "" \
+    -v /opt/backup:/backup \
+    --net app_python_backend \
+    --link="app_python-db-1:alias" \
+    schnitzler/mysqldump \
+    mysqldump --opt -h alias -u${DB_USER} -p ${DB_PASSWORD} "--result-file=/backup/${now}_${DB_NAME}.sql" ${DB_NAME}
+exit 0
+```  
+crontab-task:
+```bash
+1 * * * * /home/cherepanov/backup.sh
+```  
+![Скриншот-9](https://github.com/plusvaldis/shvirtd-example-python/blob/main/images/9.png)
+
+
 
 ## Задача 6
 Скачайте docker образ ```hashicorp/terraform:latest``` и скопируйте бинарный файл ```/bin/terraform``` на свою локальную машину, используя dive и docker save.
