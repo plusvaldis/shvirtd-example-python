@@ -13,30 +13,40 @@
 4. (Необязательная часть, *) По образцу предоставленного python кода внесите в него исправление для управления названием используемой таблицы через ENV переменную.  
 Создали Dockerfile с кодом:  
 
-```FROM python:3.9-slim
+```bash
+FROM python:3.9-slim
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY main.py .
-CMD ["python", "main.py"]```
+CMD ["python", "main.py"]
+```
 
-Запустили сборку приложения ```docker build -t test_python .```  
+Запустили сборку приложения 
+```bash
+docker build -t test_python .
+```  
 
-![Скриншот-1](https://github.com/plusvaldis/virtd-homeworks/blob/main/05-virt-03-docker-intro/images/1.png)
+![Скриншот-1](https://github.com/plusvaldis/shvirtd-example-python/blob/main/images/1.png)
 
 ## Задача 2 (*)
 1. Создайте в yandex cloud container registry с именем "test" с помощью "yc tool" . [Инструкция](https://cloud.yandex.ru/ru/docs/container-registry/quickstart/?from=int-console-help)  
 Установлен ус  
-![Скриншот-2](https://github.com/plusvaldis/virtd-homeworks/blob/main/05-virt-03-docker-intro/images/2.png)  
+![Скриншот-2](https://github.com/plusvaldis/shvirtd-example-python/blob/main/images/2.png)  
 
 2. Настройте аутентификацию вашего локального docker в yandex container registry.
 3. Соберите и залейте в него образ с python приложением из задания №1.
 4. Просканируйте образ на уязвимости.
 5. В качестве ответа приложите отчет сканирования.  
-![Скриншот-3](https://github.com/plusvaldis/virtd-homeworks/blob/main/05-virt-03-docker-intro/images/3.png) 
+
+![Скриншот-3](https://github.com/plusvaldis/shvirtd-example-python/blob/main/images/3.png) 
 
 ## Задача 3
-1. Создайте файл ```compose.yaml```. Опишите в нем следующие сервисы: 
+1. Создайте файл  
+```bash 
+compose.yaml
+```  
+Опишите в нем следующие сервисы: 
 
 - ```web```. Образ приложения должен ИЛИ собираться при запуске compose из файла ```Dockerfile.python``` ИЛИ скачиваться из yandex cloud container registry(из задание №2 со *). Контейнер должен работать в bridge-сети с названием ```backend``` и иметь фиксированный ipv4-адрес ```172.20.0.5```. Сервис должен всегда перезапускаться в случае ошибок.
 Передайте необходимые ENV-переменные для подключения к Mysql базе данных по сетевому имени сервиса ```web``` 
@@ -48,7 +58,7 @@ CMD ["python", "main.py"]```
 5. Подключитесь к БД mysql с помощью команды ```docker exec <имя_контейнера> mysql -uroot -p<пароль root-пользователя>``` . Введите последовательно команды (не забываем в конце символ ; ): ```show databases; use <имя вашей базы данных(по-умолчанию example)>; show tables; SELECT * from requests LIMIT 10;```.
 
 6. Остановите проект. В качестве ответа приложите скриншот sql-запроса.  
-![Скриншот-3](https://github.com/plusvaldis/virtd-homeworks/blob/main/05-virt-03-docker-intro/images/4.png) 
+![Скриншот-4](https://github.com/plusvaldis/shvirtd-example-python/blob/main/images/4.png) 
 
 
 ## Задача 4
@@ -57,9 +67,9 @@ CMD ["python", "main.py"]```
 3. Напишите bash-скрипт, который скачает ваш fork-репозиторий в каталог /opt и запустит проект целиком.
 4. Зайдите на сайт проверки http подключений, например(или аналогичный): ```https://check-host.net/check-http``` и запустите проверку вашего сервиса ```http://<внешний_IP-адрес_вашей_ВМ>:5000```.
 5. (Необязательная часть) Дополнительно настройте remote ssh context к вашему серверу. Отобразите список контекстов и результат удаленного выполнения ```docker ps -a```  
-![Скриншот-5](https://github.com/plusvaldis/virtd-homeworks/blob/main/05-virt-03-docker-intro/images/5.png) 
+![Скриншот-5](https://github.com/plusvaldis/shvirtd-example-python/blob/main/images/5.png)  
 6. В качестве ответа повторите  sql-запрос и приложите скриншот с данного сервера, bash-скрипт и ссылку на fork-репозиторий.  
-![Скриншот-6](https://github.com/plusvaldis/virtd-homeworks/blob/main/05-virt-03-docker-intro/images/6.png)  
+![Скриншот-6](https://github.com/plusvaldis/shvirtd-example-python/blob/main/images/6.png)  
 [bash-скрипт](https://github.com/plusvaldis/shvirtd-example-python/blob/main/install_python_v2.sh)  
 [fork-репозиторий](https://github.com/plusvaldis/shvirtd-example-python/tree/main)
 
